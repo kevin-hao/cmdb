@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+{% block title %}easou资产管理平台 — 主页{% endblock %}
+{% block content %}
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>值班人信息</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <p><i class="fa fa-user" aria-hidden="true"></i>  郝朝阳</p>
+                        <p><i class="fa fa-mobile-phone"></i>  18189896229</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right"></span>
+                        <h5>服务器数</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">5,203</h1>
+                        <div class="stat-percent font-bold text-success"></i></div>
+                        <small>总数</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-info pull-right"></span>
+                        <h5>用户数</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">16</h1>
+                        <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i>
+                        </div>
+                        <small>用户数</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right"></span>
+                        <h5>虚拟机</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">127</h1>
+                        <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i>
+                        </div>
+                        <small>总数</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>部门<i class="fa fa-arrows-h"></i> 主机</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="echarts" id="department-host"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>机房<i class="fa fa-arrows-h"></i> 主机</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="echarts" id="idc-host"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>业务<i class="fa fa-arrows-h"></i> 主机</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="echarts" id="business-host"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>物理机<i class="fa fa-arrows"></i>虚拟机</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="graph_flot.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="echarts" id="physical-virtual"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block foot_js_css %}
+    <script src="{{ url_for('static',filename='js/plugins/echarts/echarts-all.js') }}"></script>
+    <script>
+        $(function () {
+
+
+    var pieChart = echarts.init(document.getElementById("department-host"));
+    var pieoption = {
+        title : {
+            text: '',
+            subtext: '',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['北分垂直','运维部','系统部','游戏发行部','测试部']
+        },
+        calculable : true,
+        series : [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '50%'],
+                data:[
+                    {value:335, name:'北分垂直'},
+                    {value:310, name:'运维部'},
+                    {value:234, name:'系统部'},
+                    {value:135, name:'游戏发行部'},
+                    {value:1548, name:'测试部'}
+                ]
+            }
+        ]
+    };
+    pieChart.setOption(pieoption);
+
+    var pieChart = echarts.init(document.getElementById("idc-host"));
+    var pieoption = {
+        title : {
+            text: '',
+            subtext: '',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['世纪互联机房','木樨园机房','梅林机房','深圳公司机房','青岛机房']
+        },
+        calculable : true,
+        series : [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '50%'],
+                data:[
+                    {value:300, name:'世纪互联机房'},
+                    {value:210, name:'木樨园机房'},
+                    {value:234, name:'梅林机房'},
+                    {value:135, name:'深圳公司机房'},
+                    {value:3548, name:'青岛机房'}
+                ]
+            }
+        ]
+    };
+    pieChart.setOption(pieoption);
+
+    var pieChart = echarts.init(document.getElementById("business-host"));
+    var pieoption = {
+        title : {
+            text: '',
+            subtext: '',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['小说','游戏','音乐社区','ivr业务','搜索引擎']
+        },
+        calculable : true,
+        series : [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '50%'],
+                data:[
+                    {value:2500, name:'小说'},
+                    {value:210, name:'游戏'},
+                    {value:234, name:'音乐社区'},
+                    {value:135, name:'ivr业务'},
+                    {value:3548, name:'搜索引擎'}
+                ]
+            }
+        ]
+    };
+    pieChart.setOption(pieoption);
+
+    var pieChart = echarts.init(document.getElementById("physical-virtual"));
+    var pieoption = {
+        title : {
+            text: '',
+            subtext: '',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['物理机','虚拟机']
+        },
+        calculable : true,
+        series : [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '50%'],
+                data:[
+                    {value:4540, name:'物理机'},
+                    {value:128, name:'虚拟机'}
+                ]
+            }
+        ]
+    };
+    pieChart.setOption(pieoption);
+
+});
+    </script>
+{% endblock %}

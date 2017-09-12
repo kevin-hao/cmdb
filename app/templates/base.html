@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.ico') }}">
+    {% include 'link_css.html' %}
+    {% block head_js_css %}{% endblock %}
+
+</head>
+<body>
+    <div id="wrapper">
+        {% include 'nav_left.html' %}
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            {% include 'header_bar.html' %}
+            {% block content1 %}{% endblock %}
+                <div class="wrapper wrapper-content">
+                {% block content %}{% endblock %}
+                {% include 'foot.html' %}
+                </div>
+
+        </div>
+
+    </div>
+
+    {% include 'link_js.html' %}
+    {% block foot_js_css %}{% endblock %}
+</body>
+</html>
