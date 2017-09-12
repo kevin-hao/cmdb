@@ -14,11 +14,11 @@ class Config:
     MAIL_SERVER = 'staff.easou.com'
     MAIL_PORT = 25
     MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or 'kade_hao@staff.easou.com'
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or 'kade8888'
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or '***********'
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or '******'
     CMBD_MAIL_SUBJECT_PREFIX = 'cmdb'
-    CMDB_MAIL_SENDER = 'kade_hao<kade_hao@staff.easou.com>'
-    CMDB_ADMIN = os.environ.get('BLOG_ADMIN') or '18189896229@163.com'
+    CMDB_MAIL_SENDER = '***********'
+    CMDB_ADMIN = os.environ.get('BLOG_ADMIN') or '********'
     CMDB_POSTS_PER_PAGE = 2
 
     @staticmethod
@@ -27,7 +27,7 @@ class Config:
 
 class DevConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://kevin:123456@10.0.1.4/cmdb'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://username:password@IP/database'
 
 config = {
     'dev':DevConfig,
